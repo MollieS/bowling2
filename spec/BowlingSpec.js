@@ -1,17 +1,22 @@
-describe("A game of bowling", function(){
-
-
-  it("tracks score for single roll", function(){
+describe('Bowling', function () {
+  var game;
+  beforeEach(function () {
     game = new Game();
-    game.roll(5);
-    expect(game.score()).toEqual(5);
   });
-
-  it("tracks score for multiple rolls", function(){
-    game = new Game();
-    game.roll(5);
-    game.roll(10);
-    expect(game.score()).toEqual(15);
+  describe('has frames', function () {
+    it('starts on the first frame ', function () {
+      expect(game.currentFrame).toEqual(1);
+    });
+    it('keeps track of frames', function () {
+      game.roll(4, 4);
+      game.roll(3, 2);
+      expect(game.currentFrame).toEqual(3);
+    });
   });
-
+  describe('playing a game', function () {
+    it('tracks score for multiple rolls', function () {
+      game.roll(1, 1);
+      expect(game.total()).toEqual(2);
+    });
+  });
 });
